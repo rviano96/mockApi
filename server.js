@@ -25,9 +25,9 @@ function verifyToken(token){
 
 // Check if the user exists in database
 function isAuthenticated({username, password}){
-  
   return userdb.users.findIndex(user => user.name === username[0] && user.password === password) !== -1
 }
+
 function getTheme(domain){
   let key = themesdb.themes.findIndex(theme => theme.name == domain[1]) 
   if(key ==-1){
@@ -36,6 +36,7 @@ function getTheme(domain){
    return themesdb.themes[key].name;
   // return themesdb.themes.findBy
 }
+
 server.post('/login', (req, res) => {
     const {domain, password} = req.body
     // console.log("headers: ", req.body)
