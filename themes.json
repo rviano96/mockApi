@@ -1,0 +1,19 @@
+{
+    "themes": [
+      {
+        "id": 1,
+        "name": "cocacola",
+        "theme": "cocacola"
+      },
+      {
+        "id": 2,
+        "name": "pepsi",
+        "theme": "pepsi"
+      },
+      {
+        "id": 3,
+        "name": "fanta",
+        "theme": "fanta"
+      }
+    ]
+  }

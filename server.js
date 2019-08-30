@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const server = jsonServer.create()
 const router = jsonServer.router('./db.json')
 const userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'))
+const themesdb = JSON.parse(fs.readFileSync('./themes.json', 'UTF-8'))
 server.use(jsonServer.defaults());
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(bodyParser.json())
@@ -21,25 +22,36 @@ function verifyToken(token){
 }
 
 // Check if the user exists in database
-function isAuthenticated({email, password}){
-  return userdb.users.findIndex(user => user.email === email && user.password === password) !== -1
+function isAuthenticated({username, password}){
+  
+  return userdb.users.findIndex(user => user.name === username[0] && user.password === password) !== -1
+}
+function getTheme(domain){
+  let key = themesdb.themes.findIndex(theme => theme.name == domain[1]) 
+  if(key ==-1){
+    return "default";
+  }
+   return themesdb.themes[key].name;
+  // return themesdb.themes.findBy
 }
 server.post('/login', (req, res) => {
-    const {email, password} = req.body
-    // console.log("headers: ", req.headers)
-
-    if (isAuthenticated({email, password}) === false) {
+    const {domain, password} = req.body
+    // console.log("headers: ", req.body)
+    let username = domain.split('.');
+    if (isAuthenticated({username, password}) === false) {
       const status = 401
-      const message = 'Incorrect email or password'
+      const message = 'Incorrect domain or password'
       res.status(status).json({status, message})
       return
     }
-    const access_token = createToken({email, password})
-    res.status(200).json({access_token})
+    const access_token = createToken({domain, password})
+    // console.log(getTheme(username))
+    let theme = getTheme(username);
+    res.status(200).json({"token": access_token, "theme":theme});
   })
 
   server.use(/^(?!\/auth).*$/,  (req, res, next) => {
-    console.log("headers:" , req.headers);
+    // console.log("headers:" , req.headers);
     if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
       const status = 401
       const message = 'Bad authorization header'

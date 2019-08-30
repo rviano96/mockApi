@@ -3,19 +3,19 @@
       {
         "id": 1,
         "name": "bruno",
-        "email": "bruno@email.com",
+        "domain": "cocacola",
         "password": "bruno"
       },
       {
         "id": 2,
         "name": "nilson",
-        "email": "nilson@email.com",
+        "domain": "pepsi",
         "password": "nilson"
       },
       {
-        "id": 2,
+        "id": 3,
         "name": "rodrigo",
-        "email": "rodrigo@email.com",
+        "domain": "fanta",
         "password": "rodrigo"
       }
     ]
