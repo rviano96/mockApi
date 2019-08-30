@@ -9,6 +9,8 @@ const themesdb = JSON.parse(fs.readFileSync('./themes.json', 'UTF-8'))
 server.use(jsonServer.defaults());
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(bodyParser.json())
+// setea el puerto  automaticamente o usa el 8080
+var port = process.env.PORT || 8080
 const SECRET_KEY = '123456789'
 const expiresIn = '1h'
 // Create a token from a payload 
@@ -69,6 +71,6 @@ server.post('/login', (req, res) => {
   })
 server.use(router)
 // server.use(function(req,res,next){setTimeout(next,2000)});
-server.listen(3000, () => {
+server.listen(port, () => {
   console.log('Run Auth API Server')
 })
