@@ -11,7 +11,7 @@ const recibosdb = JSON.parse(fs.readFileSync('./recibos.json', 'UTF-8'))
 server.use(jsonServer.defaults());
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(bodyParser.json())
-var test = true;
+var test = false;
 // setea el puerto  automaticamente o usa el 8080
 if(test){
   var port =  8080
