@@ -11,8 +11,14 @@ const recibosdb = JSON.parse(fs.readFileSync('./recibos.json', 'UTF-8'))
 server.use(jsonServer.defaults());
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(bodyParser.json())
+var test = true;
 // setea el puerto  automaticamente o usa el 8080
-var port =  process.env.PORT || 8080
+if(test){
+  var port =  8080
+}else{
+  var port =  process.env.PORT || 8080
+}
+
 const SECRET_KEY = '123456789'
 const expiresIn = '1h'
 var tokenParsed = ""
@@ -41,14 +47,24 @@ function getTheme(domain){
 
 }
 function getRecibos(information){
-  console.log("info: ", information);
+  // console.log("info: ", information);
   let username = information.domain.split('.')[0];
   let domain = information.domain.split('.')[1];
-  let key = recibosdb.recibos.findIndex(recibos => recibos.name == username)
-  let recibos = recibosdb.recibos[key].data;
+  let key = db.recibos.findIndex(recibos => recibos.name == username)
+  return db.recibos[key].data;
   // console.log(recibos);
-  return ({"data":recibos});
+  // return ({"data":recibos});
 }
+
+function getRecibo(information, date){
+  let data = getRecibos(information);
+  console.log(data);
+  let key = data.findIndex(recibo => recibo.date == date)
+  console.log(data[key]);
+  return data[key]
+  //let recibo = data.
+}
+
 function getAllThemes(){
   return db.themes;
 }
@@ -80,7 +96,22 @@ server.get('/recibos', (req, res) =>{
   }
   try {
     verifyToken(req.headers.authorization.split(' ')[1])
-    res.status(200).json(getRecibos(analyzeToken(req.headers.authorization.split(' ')[1])));
+    //console.log(req.param("month"));
+    if(req.param("month")){
+      //console.log(req.param("month"));
+      let recibo = getRecibo(analyzeToken(req.headers.authorization.split(' ')[1]), req.param("month"))
+      res.status(200).json(recibo);
+    }else{
+      let data = getRecibos(analyzeToken(req.headers.authorization.split(' ')[1]));
+          //console.log(data);
+          let date = [];
+          data.forEach(recibo => {
+            //console.log(recibo.date)
+            date.push(recibo.date);
+          });
+          res.status(200).json(date);
+    }
+    
   } catch (err) {
     // console.log("err: ", err);
     const status = 401
