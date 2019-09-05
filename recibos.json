@@ -1,50 +1,4 @@
 {
-    "products": [
-        {
-            "id": 1,
-            "name": "Product001",
-            "cost": 10.0,
-            "quantity": 1000
-        },
-        {
-            "id": 2,
-            "name": "Product002",
-            "cost": 20.0,
-            "quantity": 2000
-        },
-        {
-            "id": 3,
-            "name": "Product003",
-            "cost": 30.0,
-            "quantity": 3000
-        },
-        {
-            "id": 4,
-            "name": "Product004",
-            "cost": 40.0,
-            "quantity": 4000
-        }
-    ],
-    "users": [
-        {
-          "id": 1,
-          "name": "bruno",
-          "domain": "cocacola",
-          "password": "bruno"
-        },
-        {
-          "id": 2,
-          "name": "nilson",
-          "domain": "pepsi",
-          "password": "nilson"
-        },
-        {
-          "id": 3,
-          "name": "rodrigo",
-          "domain": "fanta",
-          "password": "rodrigo"
-        }
-      ],
     "recibos": [
         {
             "id":"1",
@@ -327,22 +281,5 @@
                   }
             ]
         }
-    ],
-    "themes": [
-        {
-          "id": 1,
-          "name": "cocacola",
-          "theme": "cocacola"
-        },
-        {
-          "id": 2,
-          "name": "pepsi",
-          "theme": "pepsi"
-        },
-        {
-          "id": 3,
-          "name": "fanta",
-          "theme": "fanta"
-        }
-      ]
-  }
+    ]
+}
