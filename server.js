@@ -12,7 +12,7 @@ server.use(jsonServer.defaults());
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(bodyParser.json())
 // setea el puerto  automaticamente o usa el 8080
-var port =  8080
+var port =  process.env.PORT || 8080
 const SECRET_KEY = '123456789'
 const expiresIn = '1h'
 var tokenParsed = ""
