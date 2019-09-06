@@ -107,7 +107,7 @@ server.get('/recibos', (req, res) =>{
           let date = [];
           data.forEach(recibo => {
             //console.log(recibo.date)
-            date.push(recibo.date);
+            date.push({"id": recibo.id, "date": recibo.date});
           });
           res.status(200).json(date);
     }
