@@ -57,7 +57,7 @@ function getRecibos(information){
 }
 function signReciept(information,pin){
   let username = information.domain.split('.')[0];
-  let key = db.pin.findIndex(pin => pin.name == username)
+  let key = db.pins.findIndex(pin => pin.name == username)
   return db.pins[key].pin == pin;
 }
 function getRecibo(information, date){
@@ -135,21 +135,21 @@ server.post('/recibos', (req, res) =>{
     const {month, pin} = req.body
     verifyToken(req.headers.authorization.split(' ')[1])
     //console.log(req.param("month"));
-    
       //console.log(req.param("month"));
       let signOK = signReciept(analyzeToken(req.headers.authorization.split(' ')[1]), pin)
       if (signOK){
+        const status = 200;
         const message = 'Receipt signed'
-        res.status(200).json({status, message});
+        res.status(status).json({status, message});
       }
       else{
+        const status = 401;
         const message = 'Pin is not valid'
         res.status(401).json({status, message});
       }
-     
     }
      catch (err) {
-    // console.log("err: ", err);
+    console.log("err: ", err);
     const status = 401
     const message = 'Error: access_token is not valid'
     return res.status(status).json({status, message})
