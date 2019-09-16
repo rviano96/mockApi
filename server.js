@@ -55,7 +55,11 @@ function getRecibos(information){
   // console.log(recibos);
   // return ({"data":recibos});
 }
-
+function signReciept(information,pin){
+  let username = information.domain.split('.')[0];
+  let key = db.pin.findIndex(pin => pin.name == username)
+  return db.pins[key].pin == pin;
+}
 function getRecibo(information, date){
   let data = getRecibos(information);
   console.log(data);
@@ -120,7 +124,38 @@ server.get('/recibos', (req, res) =>{
   }
   
 })
-
+server.post('/recibos', (req, res) =>{
+  if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
+    const status = 401
+    const message = 'Bad authorization header'
+    res.status(status).json({status, message})
+    return
+  }
+  try {
+    const {month, pin} = req.body
+    verifyToken(req.headers.authorization.split(' ')[1])
+    //console.log(req.param("month"));
+    
+      //console.log(req.param("month"));
+      let signOK = signReciept(analyzeToken(req.headers.authorization.split(' ')[1]), pin)
+      if (signOK){
+        const message = 'Receipt signed'
+        res.status(200).json({status, message});
+      }
+      else{
+        const message = 'Pin is not valid'
+        res.status(401).json({status, message});
+      }
+     
+    }
+     catch (err) {
+    // console.log("err: ", err);
+    const status = 401
+    const message = 'Error: access_token is not valid'
+    return res.status(status).json({status, message})
+  }
+  
+})
 server.get('/themes', (req, res)=>{
     console.log(Object.keys(req.params).length);
     const name = req.params
