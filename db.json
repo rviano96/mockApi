@@ -53,6 +53,7 @@
                 {
                     "id": 1,
                     "date": "Enero 2019",
+                    "status":"signed",
                     "datos": {
                         "dato1": "dato1",
                         "dato2": "dato2",
@@ -64,6 +65,7 @@
                   {
                     "id": 2,
                     "date": "Febrero 2019",
+                    "status":"signed",
                     "datos": {
                         "dato1": "dato1",
                         "dato2": "dato2",
@@ -75,6 +77,7 @@
                   {
                     "id": 3,
                     "date": "Marzo 2019",
+                    "status":"nonconformingly",
                     "datos": {
                         "dato1": "dato1",
                         "dato2": "dato2",
@@ -86,6 +89,7 @@
                   {
                     "id": 4,
                     "date": "Abril 2019",
+                    "status":"nonconformingly",
                     "datos": {
                         "dato1": "dato1",
                         "dato2": "dato2",
@@ -97,6 +101,7 @@
                   {
                     "id": 5,
                     "date": "Mayo 2019",
+                    "status":"",
                     "datos": {"dato1": "dato1",                         
                         "dato2": "dato2",                         
                         "dato3": "dato3",                         
@@ -107,6 +112,7 @@
                   {
                     "id": 6,
                     "date": "Junio 2019",
+                    "status":"",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -118,6 +124,7 @@
                   {
                     "id": 7,
                     "date": "Julio 2019",
+                    "status":"",
                     "datos": {                        
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -129,6 +136,7 @@
                   {
                     "id": 8,
                     "date": "Agosto 2019",
+                    "status":"",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -146,6 +154,7 @@
                 {
                     "id": 1,
                     "date": "Enero 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -157,6 +166,7 @@
                   {
                     "id": 2,
                     "date": "Febrero 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -168,6 +178,7 @@
                   {
                     "id": 3,
                     "date": "Marzo 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -179,6 +190,7 @@
                   {
                     "id": 4,
                     "date": "Abril 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -190,6 +202,7 @@
                   {
                     "id": 5,
                     "date": "Mayo 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -201,6 +214,7 @@
                   {
                     "id": 6,
                     "date": "Junio 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -212,6 +226,7 @@
                   {
                     "id": 7,
                     "date": "Julio 2019",
+                    "status":"signed",
                     "datos": {                        
                          "dato1": "dato1",                         
                          "dato2": "dato2",                         
@@ -223,6 +238,7 @@
                   {
                     "id": 8,
                     "date": "Agosto 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -240,6 +256,7 @@
                 {
                     "id": 1,
                     "date": "Enero 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -251,6 +268,7 @@
                   {
                     "id": 2,
                     "date": "Febrero 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -262,6 +280,7 @@
                   {
                     "id": 3,
                     "date": "Marzo 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -273,6 +292,7 @@
                   {
                     "id": 4,
                     "date": "Abril 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -284,6 +304,7 @@
                   {
                     "id": 5,
                     "date": "Mayo 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -295,6 +316,7 @@
                   {
                     "id": 6,
                     "date": "Junio 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
@@ -306,6 +328,7 @@
                   {
                     "id": 7,
                     "date": "Julio 2019",
+                    "status":"signed",
                     "datos": {                        
                          "dato1": "dato1",                         
                          "dato2": "dato2",                         
@@ -317,6 +340,7 @@
                   {
                     "id": 8,
                     "date": "Agosto 2019",
+                    "status":"signed",
                     "datos": {                         
                         "dato1": "dato1",                         
                         "dato2": "dato2",                         
