@@ -36,7 +36,10 @@ function verifyToken(token){
 function isAuthenticated({username, password}){
   return db.users.findIndex(user => user.name === username[0] && user.password === password) !== -1
 }
-
+function getPin(name){
+  let key = db.pins.findIndex(pin => pin.name == name)
+  return db.pins[key].pin;
+}
 function getTheme(domain){
   
   let key = db.themes.findIndex(theme => theme.name == domain) 
@@ -88,7 +91,8 @@ server.post('/login', (req, res) => {
     const access_token = createToken({domain, password})
     // console.log(getTheme(username))
     let theme = getTheme(username[1]);
-    res.status(200).json({"token": access_token, "theme":theme});
+    let pin = getPin(username[0]);
+    res.status(200).json({"token": access_token, "theme":theme, "pin":pin});
   })
 
 server.get('/recibos', (req, res) =>{
