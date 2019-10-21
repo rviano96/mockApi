@@ -11,7 +11,7 @@ const recibosdb = JSON.parse(fs.readFileSync('./recibos.json', 'UTF-8'))
 server.use(jsonServer.defaults());
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(bodyParser.json())
-var test = false;
+var test = true;
 // setea el puerto  automaticamente o usa el 8080
 if(test){
   var port =  8080
@@ -62,6 +62,12 @@ function signReciept(information,pin){
   let username = information.domain.split('.')[0];
   let key = db.pins.findIndex(pin => pin.name == username)
   return db.pins[key].pin == pin;
+}
+function generatePin(information,pin){
+  let username = information.domain.split('.')[0];
+  let key = db.pins.findIndex(pin => pin.name == username);
+  //console.log(db.pins[key].pin);
+  return db.pins[key].pin != pin;
 }
 function getRecibo(information, date){
   let data = getRecibos(information);
@@ -144,6 +150,37 @@ server.post('/recibos', (req, res) =>{
       if (signOK){
         const status = 200;
         const message = 'Receipt signed'
+        res.status(status).json({status, message});
+      }
+      else{
+        const status = 401;
+        const message = 'Pin is not valid'
+        res.status(401).json({status, message});
+      }
+    }
+     catch (err) {
+    console.log("err: ", err);
+    const status = 401
+    const message = 'Error: access_token is not valid'
+    return res.status(status).json({status, message})
+  }
+  
+})
+server.post('/pin', (req, res) =>{
+  if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
+    const status = 401
+    const message = 'Bad authorization header'
+    res.status(status).json({status, message})
+    return
+  }
+  try {
+    const {pin} = req.body
+    verifyToken(req.headers.authorization.split(' ')[1])
+
+      let pinOk = generatePin(analyzeToken(req.headers.authorization.split(' ')[1]), pin)
+      if (pinOk){
+        const status = 200;
+        const message = 'Pin Generado'
         res.status(status).json({status, message});
       }
       else{
