@@ -94,10 +94,10 @@ server.post('/login', (req, res) => {
       res.status(status).json({status, message})
       return
     }
-    const access_token = createToken({domain, password})
+    let pin = getPin(username[0]);
+    const access_token = createToken({domain, pin})
     // console.log(getTheme(username))
     let theme = getTheme(username[1]);
-    let pin = getPin(username[0]);
     res.status(200).json({"token": access_token, "theme":theme, "pin":pin});
   })
 
