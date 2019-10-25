@@ -181,7 +181,8 @@ server.post('/pin', (req, res) =>{
       if (pinOk){
         const status = 200;
         const message = 'Pin Generado'
-        res.status(status).json({status, message});
+        const access_token = createToken({domain, pin})
+        res.status(status).json({status, message, access_token});
       }
       else{
         const status = 401;
