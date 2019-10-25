@@ -11,7 +11,7 @@ const recibosdb = JSON.parse(fs.readFileSync('./recibos.json', 'UTF-8'))
 server.use(jsonServer.defaults());
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(bodyParser.json())
-var test = false;
+var test = true;
 // setea el puerto  automaticamente o usa el 8080
 if(test){
   var port =  8080
@@ -69,6 +69,7 @@ function generatePin(information,pin){
   //console.log(db.pins[key].pin);
   return db.pins[key].pin != pin;
 }
+
 function getRecibo(information, date){
   let data = getRecibos(information);
   console.log(data);
@@ -176,9 +177,10 @@ server.post('/pin', (req, res) =>{
   try {
     const {pin} = req.body
     verifyToken(req.headers.authorization.split(' ')[1])
-
+      
       let pinOk = generatePin(analyzeToken(req.headers.authorization.split(' ')[1]), pin)
       if (pinOk){
+        let domain = analyzeToken(req.headers.authorization.split(' ')[1]).domain;
         const status = 200;
         const message = 'Pin Generado'
         const access_token = createToken({domain, pin})
